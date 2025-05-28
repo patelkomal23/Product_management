@@ -66,13 +66,8 @@ function Side() {
             <div className="collapse" id="tables">
               <ul className="nav nav-collapse">
                 <li>
-                  <Link to="tables/tables.html">
-                    <span className="sub-item">Basic Table</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="tables/datatables.html">
-                    <span className="sub-item">Datatables</span>
+                  <Link to="/datatable">
+                    <span className="sub-item">Data Table</span>
                   </Link>
                 </li>
               </ul>

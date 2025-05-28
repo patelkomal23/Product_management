@@ -1,9 +1,11 @@
+
 import React from "react";
 
+import "../assets/script";
 import Side from "../components/Side";
 import Header from "../components/Header";
 
-const Form = ({ handleChange, product, godown ,handleSubmit}) => {
+const Datatable = ({ productsData, handleDelete,handleEdit }) => {
   return (
     <>
       <div className="wrapper">
@@ -11,13 +13,13 @@ const Form = ({ handleChange, product, godown ,handleSubmit}) => {
         <Side />
         {/* End Sidebar */}
         <div className="main-panel">
-          {/* Navbar start*/}
+          {/* header start */}
           <Header />
-          {/* Navbar end */}
+          {/* header end */}
           <div className="container">
             <div className="page-inner">
               <div className="page-header">
-                <h3 className="fw-bold mb-3">Forms</h3>
+                <h3 className="fw-bold mb-3">DataTables.Net</h3>
                 <ul className="breadcrumbs mb-3">
                   <li className="nav-home">
                     <a href="#">
@@ -28,177 +30,199 @@ const Form = ({ handleChange, product, godown ,handleSubmit}) => {
                     <i className="icon-arrow-right" />
                   </li>
                   <li className="nav-item">
-                    <a href="#">Forms</a>
+                    <a href="#">Tables</a>
                   </li>
                   <li className="separator">
                     <i className="icon-arrow-right" />
                   </li>
                   <li className="nav-item">
-                    <a href="#">Basic Form</a>
+                    <a href="#">Datatables</a>
                   </li>
                 </ul>
               </div>
               <div className="row">
                 <div className="col-md-12">
-                  <form action="" method="post" onSubmit={handleSubmit}>
-                    <div className="card">
-                      <div className="card-header">
-                        <div className="card-title">Form Elements</div>
+                  <div className="card">
+                    <div className="card-header">
+                      <div className="d-flex align-items-center">
+                        <h4 className="card-title">Add Row</h4>
+                        <button
+                          className="btn btn-primary btn-round ms-auto"
+                          data-bs-toggle="modal"
+                          data-bs-target="#addRowModal"
+                        >
+                          <i className="fa fa-plus" />
+                          Add Row
+                        </button>
                       </div>
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-md-6 col-lg-4">
-                            {/* Product-Name */}
-                            <div className="form-group">
-                              <label htmlFor="product_name" className="fw-bold">
-                                Product Name{" "}
-                              </label>
-                              <input
-                                onChange={handleChange}
-                                name="product_name"
-                                value={product.product_name || ""}
-                                type="text"
-                                className="form-control"
-                                id="product_name"
-                                placeholder="Enter product name"
-                              />
-                            </div>
-                            <div className="form-group">
-                              <label
-                                htmlFor="product_price"
-                                className="fw-bold"
+                    </div>
+                    <div className="card-body">
+                      {/* Modal */}
+                      <div
+                        className="modal fade"
+                        id="addRowModal"
+                        tabIndex={-1}
+                        role="dialog"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog" role="document">
+                          <div className="modal-content">
+                            <div className="modal-header border-0">
+                              <h5 className="modal-title">
+                                <span className="fw-mediumbold"> New</span>
+                                <span className="fw-light"> Row </span>
+                              </h5>
+                              <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
                               >
-                                Product Price{" "}
-                              </label>
-                              <input
-                                type="text"
-                                name="product_price"
-                                onChange={handleChange}
-                                value={product.product_price || ""}
-                                className="form-control"
-                                id="product_price"
-                                placeholder="Enter product price"
-                              />
+                                <span aria-hidden="true">×</span>
+                              </button>
                             </div>
-                            {/*Available stock*/}
-                            <div className="form-group">
-                              <label
-                                htmlFor="product_stock"
-                                className="fw-bold"
+                            <div className="modal-body">
+                              <p className="small">
+                                Create a new row using this form, make sure you
+                                fill them all
+                              </p>
+                              <form>
+                                <div className="row">
+                                  <div className="col-sm-12">
+                                    <div className="form-group form-group-default">
+                                      <label>Name</label>
+                                      <input
+                                        id="addName"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="fill name"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="col-md-6 pe-0">
+                                    <div className="form-group form-group-default">
+                                      <label>Position</label>
+                                      <input
+                                        id="addPosition"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="fill position"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <div className="form-group form-group-default">
+                                      <label>Office</label>
+                                      <input
+                                        id="addOffice"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="fill office"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div className="modal-footer border-0">
+                              <button
+                                type="button"
+                                id="addRowButton"
+                                className="btn btn-primary"
                               >
-                                Product Stock
-                              </label>
-                              <input
-                                type="text"
-                                name="product_stock"
-                                onChange={handleChange}
-                                value={product.product_stock || ""}
-                                className="form-control"
-                                id="product_stock"
-                                placeholder="Enter Stock available"
-                              />
-                            </div>
-                            {/*Image */}
-                            <div className="form-group">
-                              <label
-                                htmlFor="product_Image"
-                                className="fw-bold"
+                                Add
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-danger"
+                                data-dismiss="modal"
                               >
-                                Product Image :
-                              </label>
-                              <input
-                                type="file"
-                                name="file"
-                                onChange={handleChange}
-                                className="form-control"
-                                id="product_image"
-                                
-                                placeholder="Enter product image"
-                              />
-                            </div>
-                            {/*Godown */}
-                            <div className="form-group">
-                              <label
-                                className="form-check-label fw-bold"
-                                htmlFor="godown"
-                              >
-                                Godown
-                              </label>
-                              <br />
-                              <div className="form-check-inline">
-                                <input
-                                  className="form-check-input"
-                                  onChange={handleChange}
-                                  checked={godown.includes("Surat")}
-                                  type="checkbox"
-                                  id="surat"
-                                  name="godown"
-                                  value="Surat"
-                                />
-                                <label
-                                  className="form-check-label ms-1"
-                                  htmlFor="surat"
-                                >
-                                  Surat
-                                </label>
-                              </div>
-                              <div className="form-check-inline">
-                                <input
-                                  className="form-check-input"
-                                  onChange={handleChange}
-                                  checked={godown.includes("Navsari")}
-                                  type="checkbox"
-                                  id="navsari"
-                                  name="godown"
-                                  value="Navsari"
-                                />
-                                <label
-                                  className="form-check-label ms-1 "
-                                  htmlFor="navsari"
-                                >
-                                  Navsari
-                                </label>
-                              </div>
-                              <div className="form-check-inline">
-                                <input
-                                  className="form-check-input"
-                                  onChange={handleChange}
-                                  checked={godown.includes("Bardoli")}
-                                  type="checkbox"
-                                  id="bardoli"
-                                  name="godown"
-                                  value="Bardoli"
-                                />
-                                <label
-                                  className="form-check-label ms-1"
-                                  htmlFor="bardoli"
-                                >
-                                  Bardoli
-                                </label>
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label htmlFor="description" className="fw-bold">
-                                Description{" "}
-                              </label>
-                              <textarea
-                                onChange={handleChange}
-                                name="description"
-                                value={product.description || ""}
-                                className="form-control"
-                                id="description"
-                              />
+                                Close
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="card-action">
-                        <button className="btn btn-success">Submit</button>
-                        <button className="btn btn-danger">Cancel</button>
+                      <div className="table-responsive">
+                        <table
+                          id="add-row"
+                          className="display table-responsive table table-striped table-hover"
+                        >
+                          <thead>
+                            <tr>
+                              <th>Sr No.</th>
+                              <th>Product</th>
+                              <th>Price</th>
+                              <th>Stock</th>
+                              <th>Product-Image</th>
+                              <th>Godown</th>
+                              <th>Description</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>Sr No.</th>
+                              <th>Product</th>
+                              <th>Price</th>
+                              <th>Stock</th>
+                              <th>Product-Image</th>
+                              <th>Godown</th>
+                              <th>Description</th>
+                              <th>Action</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            {productsData.map((item, idx) => {
+                              return (
+                                <tr key={item.id}>
+                                  <td>{idx + 1}</td>
+                                  <td>{item.product_name}</td>
+                                  <td>{item.product_price}</td>
+                                  <td>{item.product_stock}</td>
+                                  <td>
+                                    <img
+                                      className="rounded"
+                                      src={item.product_image?.url || ""}
+                                      alt={
+                                        item.product_image?.name ||
+                                        "Product Image"
+                                      }
+                                      style={{
+                                        width: "70px",
+                                        height: "70px",
+                                        objectFit: "cover",
+                                      }}
+                                    />
+                                  </td>
+
+                                  <td>
+                                    {item.godown ? item.godown.toString() : []}
+                                  </td>
+                                  <td>{item.description}</td>
+
+                                  <td>
+                                       <button
+                                      className="btn btn-warning"
+                                      onClick={() => handleEdit(item.id)}
+                                    >
+                                     Edit
+                                    </button>
+                                    <button
+                                      className="btn btn-danger"
+                                      onClick={() => handleDelete(item.id)}
+                                    >
+                                      Delete
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -440,4 +464,4 @@ const Form = ({ handleChange, product, godown ,handleSubmit}) => {
   );
 };
 
-export default Form;
+export default Datatable;

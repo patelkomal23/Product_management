@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import Side from "../components/Side";
@@ -92,7 +91,7 @@ const Form = ({
                                 id="product_price"
                                 placeholder="Enter product price"
                               />
-                                {error.product_name && (
+                              {error.product_price && (
                                 <span className="text-danger">
                                   {error.product_price}
                                 </span>
@@ -115,7 +114,7 @@ const Form = ({
                                 id="product_stock"
                                 placeholder="Enter Stock available"
                               />
-                                {error.product_name && (
+                              {error.product_stock && (
                                 <span className="text-danger">
                                   {error.product_stock}
                                 </span>
@@ -138,11 +137,11 @@ const Form = ({
                                 id="product_image"
                                 placeholder="Enter product image"
                               />
-                                {error.product_name && (
+                              {/* {error.file && (
                                 <span className="text-danger">
-                                  {error.product_image}
+                                  {error.file}
                                 </span>
-                              )}
+                              )} */}
                             </div>
                             {/*Godown */}
                             <div className="form-group">
@@ -204,6 +203,11 @@ const Form = ({
                                   Bardoli
                                 </label>
                               </div>
+                              {error.godown && (
+                                <span className="text-danger">
+                                  {error.godown}
+                                </span>
+                              )}
                             </div>
 
                             <div className="form-group">
@@ -217,7 +221,7 @@ const Form = ({
                                 className="form-control"
                                 id="description"
                               />
-                                {error.product_name && (
+                              {error.description && (
                                 <span className="text-danger">
                                   {error.description}
                                 </span>

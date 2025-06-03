@@ -1,3 +1,4 @@
+
 import React from "react";
 
 import Side from "../components/Side";
@@ -18,9 +19,9 @@ const Form = ({
         <Side />
         {/* End Sidebar */}
         <div className="main-panel">
-          {/* Navbar start*/}
+          {/* Header start*/}
           <Header />
-          {/* Navbar end */}
+          {/* Header end */}
           <div className="container">
             <div className="page-inner">
               <div className="page-header">

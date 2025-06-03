@@ -56,7 +56,7 @@ const Form = ({
                       <div className="card-body">
                         <div className="row">
                           <div className="col-md-6 col-lg-4">
-                            {/* Product-Name */}
+                            {/* Product Name */}
                             <div className="form-group">
                               <label htmlFor="product_name" className="fw-bold">
                                 Product Name{" "}
@@ -76,6 +76,7 @@ const Form = ({
                                 </span>
                               )}
                             </div>
+                            {/* product_price */}
                             <div className="form-group">
                               <label
                                 htmlFor="product_price"
@@ -98,7 +99,7 @@ const Form = ({
                                 </span>
                               )}
                             </div>
-                            {/*Available stock*/}
+                            {/* stock*/}
                             <div className="form-group">
                               <label
                                 htmlFor="product_stock"
@@ -138,11 +139,6 @@ const Form = ({
                                 id="product_image"
                                 placeholder="Enter product image"
                               />
-                              {/* {error.file && (
-                                <span className="text-danger">
-                                  {error.file}
-                                </span>
-                              )} */}
                             </div>
                             {/*Godown */}
                             <div className="form-group">
@@ -279,7 +275,6 @@ const Form = ({
             </div>
           </footer>
         </div>
-        {/* Custom template | don't include it in your project! */}
         <div className="custom-template">
           <div className="title">Settings</div>
           <div className="custom-content">
@@ -472,7 +467,6 @@ const Form = ({
             <i className="icon-settings" />
           </div>
         </div>
-        {/* End Custom template */}
       </div>
     </>
   );
